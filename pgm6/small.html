@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Simple Calculator</title>
+<style>
+body{font-family:Arial;background:#eef;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
+.calculator{background:#fff;padding:20px;border-radius:10px;box-shadow:0 0 10px #aaa;width:280px;text-align:center}
+input,select,button{width:100%;margin:6px 0;padding:10px;border:1px solid #ccc;border-radius:6px}
+button{background:#007bff;color:#fff;border:none;cursor:pointer}
+#result{margin-top:10px;padding:10px;border-radius:6px;background:#def}
+</style>
+</head>
+<body>
+<div class="calculator">
+<h2>Simple Calculator</h2>
+<input type="number" id="n1" placeholder="First number">
+<input type="number" id="n2" placeholder="Second number">
+<select id="operation">
+  <option value="">Select</option>
+  <option value="+">Sum</option>
+  <option value="-">Difference</option>
+  <option value="*">Product</option>
+  <option value="/">Quotient</option>
+  <option value="%">Remainder</option>
+</select>
+<button onclick="calc()">Calculate</button>
+<div id="result"></div>
+</div>
+
+<script>
+function calc(){
+  const a=parseFloat(document.getElementById('n1').value);
+  const b=parseFloat(document.getElementById('n2').value);
+  const op=document.getElementById('operation').value;
+  let r='';
+  
+  if(isNaN(a)||isNaN(b)) r='⚠ Enter both numbers';
+  else if(op==='') r='⚠ Select an operation';
+  else if(op==='/'&&b===0) r='❌ Cannot divide by zero';
+  else r='✅ Result: '+eval(a+op+b);
+  
+  document.getElementById('result').innerHTML=r;
+}
+</script>
+</body>
+</html>

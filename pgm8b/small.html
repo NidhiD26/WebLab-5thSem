@@ -1,0 +1,47 @@
+<?php
+$conn = new mysqli("localhost", "root", "", "students");
+if ($conn->connect_error) die("Connection failed");
+
+$result = $conn->query("SELECT * FROM students");
+$students = $result->fetch_all(MYSQLI_ASSOC);
+
+// Selection sort by name
+for ($i = 0; $i < count($students) - 1; $i++) {
+    $min = $i;
+    for ($j = $i + 1; $j < count($students); $j++) {
+        if ($students[$j]['name'] < $students[$min]['name']) $min = $j;
+    }
+    $tmp = $students[$i];
+    $students[$i] = $students[$min];
+    $students[$min] = $tmp;
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sorted Students</title>
+    <style>
+        body {font-family: Arial; background:#f9f9f9; text-align:center;}
+        table {width:80%; margin:auto; border-collapse:collapse; background:white;}
+        th,td {padding:8px; border:1px solid #ccc;}
+        th {background:#444; color:white;}
+        tr:hover {background:#eee;}
+    </style>
+</head>
+<body>
+<h2>Sorted Student Records by Name</h2>
+<table>
+<tr><th>ID</th><th>Name</th><th>USN</th><th>Branch</th><th>Email</th><th>Address</th></tr>
+<?php foreach($students as $s): ?>
+<tr>
+<td><?= $s['id'] ?></td>
+<td><?= $s['name'] ?></td>
+<td><?= $s['usn'] ?></td>
+<td><?= $s['branch'] ?></td>
+<td><?= $s['email'] ?></td>
+<td><?= $s['address'] ?></td>
+</tr>
+<?php endforeach; ?>
+</table>
+</body>
+</html>

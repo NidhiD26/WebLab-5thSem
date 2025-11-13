@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Registration</title>
+<style>
+body{font-family:Arial;background:#eef;display:flex;justify-content:center;align-items:center;height:100vh;margin:0}
+form{background:#fff;padding:20px;border-radius:8px;box-shadow:0 0 8px #aaa;width:300px}
+input,select,textarea{width:100%;margin:5px 0;padding:8px}
+button{width:48%;padding:8px;border:none;color:#fff;border-radius:4px}
+button[type=submit]{background:#4CAF50}
+button[type=reset]{background:#f44336}
+</style>
+</head>
+<body>
+<form>
+<h3>Register</h3>
+<input type="text" name="fname" placeholder="First Name" required>
+<input type="text" name="lname" placeholder="Last Name" required>
+<input type="email" name="email" placeholder="Email" required>
+<input type="password" name="password" placeholder="Password" required>
+<select name="country">
+<option>India</option><option>USA</option><option>UK</option>
+</select>
+<textarea name="bio" placeholder="Short Bio"></textarea>
+<div style="display:flex;justify-content:space-between">
+<button type="submit">Submit</button>
+<button type="reset">Reset</button>
+</div>
+</form>
+</body>
+</html>

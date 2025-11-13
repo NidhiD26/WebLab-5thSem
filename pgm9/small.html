@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>jQuery Example</title>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>
+body{font-family:Arial;display:flex;justify-content:center;align-items:center;height:100vh;background:#eef;margin:0}
+div{background:#fff;padding:20px;text-align:center;border-radius:8px;box-shadow:0 0 10px #aaa}
+.box{width:100px;height:100px;line-height:100px;margin:15px auto;background:#007bff;color:#fff;border-radius:8px}
+button{margin:5px;padding:8px 15px;border:none;border-radius:6px;background:#007bff;color:#fff;cursor:pointer}
+</style>
+</head>
+<body>
+<div>
+<p id="p">This is a paragraph.</p>
+<ul id="list"><li>Item 1</li><li>Item 2</li></ul>
+<div class="box" id="box">Animate</div>
+<button id="add">Append</button>
+<button id="anim">Animate</button>
+</div>
+
+<script>
+$(function(){
+  $("#add").click(function(){
+    $("#p").append(" + Added text.");
+    $("#list").append("<li>New item</li>");
+  });
+  $("#anim").click(function(){
+    $("#box").animate({width:"200px",height:"200px",opacity:0.5},800)
+             .css("background","green")
+             .animate({width:"100px",height:"100px",opacity:1},800)
+             .css("background","#007bff");
+  });
+});
+</script>
+</body>
+</html>
