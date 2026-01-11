@@ -1,33 +1,83 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <title>Registration Form | vtucode</title>
   <style>
     body {
-      font-family: Arial, sans-serif; background: #f0f4f8;
-      display: flex; justify-content: center; align-items: center;
-      min-height: 100vh; margin: 0;
+      /* font-family: Arial, sans-serif; */
+      background: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      /* margin: 0; */
     }
+
     .container {
-      background: #fff; padding: 20px; border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-      width: 100%; max-width: 500px;
+      background: #fff;
+      padding: 40px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 600px;
     }
-    h2 { text-align: center; color: #333; }
-    .form-group { margin-bottom: 15px; }
-    label { display: block; margin-bottom: 5px; color: #555; }
-    input, select, textarea {
-      width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px;
+
+    h2 {
+      text-align: center;
+      color: #333;
     }
-    .gender { display: flex; gap: 10px; align-items: center; }
-    .buttons { display: flex; gap: 10px; justify-content: center; }
-    input[type="submit"], input[type="reset"] {
-      border: none; padding: 10px 20px; border-radius: 4px; color: #fff; cursor: pointer;
+
+    .form-group {
+      margin-bottom: 15px;
     }
-    input[type="submit"] { background: #4CAF50; }
-    input[type="reset"] { background: #f44336; }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      color: #555;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 14px;
+    }
+
+    .gender {
+      display: flex;
+      /* gap: 10px; */
+      /* align-items: center; */
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      /* justify-content: center; */
+    }
+
+    input[type="submit"],
+    input[type="reset"] {
+      /* border: none; */
+      padding: 10px;
+      border-radius: 4px;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    input[type="submit"] {
+      background: #4CAF50;
+    }
+
+    input[type="reset"] {
+      background: #f44336;
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
     <h2>Registration Form</h2>
@@ -47,7 +97,10 @@
       <div class="form-group">
         <label>Country:</label>
         <select>
-          <option>USA</option><option>Canada</option><option>UK</option><option>India</option>
+          <option>USA</option>
+          <option>Canada</option>
+          <option>UK</option>
+          <option>India</option>
         </select>
       </div>
       <div class="form-group"><label>Bio:</label><textarea rows="4"></textarea></div>
@@ -58,4 +111,5 @@
     </form>
   </div>
 </body>
+
 </html>
