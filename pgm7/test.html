@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+    <title>Simple Converter</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            margin: 20px;
+        }
+
+        .box {
+            margin-bottom: 25px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        textarea,
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+
+        button {
+            padding: 10px 15px;
+            border: 0;
+            background: #007bff;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 6px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Simple Converter</h1>
+
+    <div class="box">
+        <h3>1. JSON → Object</h3>
+        <textarea id="jIn"></textarea>
+        <button onclick="toObj()">Convert</button>
+        <pre id="jOut"></pre>
+    </div>
+
+    <div class="box">
+        <h3>2. JSON Date → Date()</h3>
+        <textarea id="dIn"></textarea>
+        <button onclick="toDate()">Convert</button>
+        <pre id="dOut"></pre>
+    </div>
+
+    <div class="box">
+        <h3>3. JSON ↔ CSV</h3>
+        <textarea id="jcIn"></textarea>
+        <button onclick="j2c()">JSON → CSV</button>
+        <pre id="cOut"></pre>
+
+        <textarea id="cIn"></textarea>
+        <button onclick="c2j()">CSV → JSON</button>
+        <pre id="jcOut"></pre>
+    </div>
+
+    <div class="box">
+        <h3>4. Hash String</h3>
+        <input id="hIn" placeholder="Enter text">
+        <button onclick="hashIt()">Hash</button>
+        <pre id="hOut"></pre>
+    </div>
+
+    <script>
+        const show = (id, txt) => {
+            const el = document.getElementById(id);
+            el.style.display = "block";
+            el.textContent = txt;
+        };
+
+        function toObj() {
+            try { show("jOut", JSON.stringify(JSON.parse(jIn.value), null, 2)); }
+            catch { show("jOut", "Invalid JSON"); }
+        }
+
+        function toDate() {
+            try {
+                let d = JSON.parse(dIn.value).date;
+                show("dOut", isNaN(Date.parse(d)) ? "Invalid Date" : new Date(d));
+            } catch { show("dOut", "Invalid JSON"); }
+        }
+
+        function j2c() {
+            try {
+                let a = JSON.parse(jcIn.value);
+                let k = Object.keys(a[0]);
+                let csv = [k.join(","), ...a.map(r => k.map(x => JSON.stringify(r[x])).join(","))].join("\n");
+                show("cOut", csv);
+            } catch { show("cOut", "Invalid JSON"); }
+        }
+
+        function c2j() {
+            try {
+                let [h, ...rows] = cIn.value.trim().split("\n");
+                let k = h.split(",");
+                let out = rows.map(r => {
+                    let v = r.split(",");
+                    return k.reduce((o, x, i) => (o[x] = v[i], o), {});
+                });
+                show("jcOut", JSON.stringify(out, null, 2));
+            } catch { show("jcOut", "Invalid CSV"); }
+        }
+
+        function hashIt() {
+            show("hOut", hIn.value ? CryptoJS.SHA256(hIn.value).toString() : "Empty input");
+        }
+    </script>
+</body>
+
+</html>

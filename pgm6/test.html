@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html>
 
 <head>
-  <title>Simple Calculator</title>
-  <style>
+    <title>Simple Calculator | vtucode</title>
+   
+</head>
+<style>
     body {
       font-family: Arial;
       background: #eef;
@@ -19,14 +20,14 @@
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0 0 10px #aaa;
-      width: 280px;
+      width: 400px;
       text-align: center
     }
 
     input,
     select,
     button {
-      width: 100%;
+      width: 90%;
       margin: 6px 0;
       padding: 10px;
       border: 1px solid #ccc;
@@ -47,8 +48,6 @@
       background: #def
     }
   </style>
-</head>
-
 <body>
   <div class="calculator">
     <h2>Simple Calculator</h2>
@@ -73,10 +72,14 @@
       const op = document.getElementById('operation').value;
       let r = '';
 
-      if (isNaN(a) || isNaN(b)) r = '⚠ Enter both numbers';
-      else if (op === '') r = '⚠ Select an operation';
-      else if (op === '/' && b === 0) r = '❌ Cannot divide by zero';
-      else r = '✅ Result: ' + eval(a + op + b);
+      if (isNaN(a) || isNaN(b)) 
+        r = ' Enter both numbers';
+      else if (op === '') 
+        r = 'Select an operation';
+      else if (op === '/' && b === 0) 
+        r = ' Cannot divide by zero';
+      else
+        r = ' Result: ' + eval(a + op + b);
 
       document.getElementById('result').innerHTML = r;
     }

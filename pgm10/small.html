@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AJAX Examples | vtucode</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f2f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #content {
+            max-width: 600px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 8px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        #output {
+            display: none;
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 6px;
+            text-align: left;
+            white-space: pre-wrap;
+        }
+
+        .plain { background: #eef7ff; }
+        .jquery { background: #eafff4; }
+        .json { background: #fff8dd; }
+        .parse { background: #ffe6f0; }
+    </style>
+</head>
+
+<body>
+
+    <h1>AJAX Examples</h1>
+
+    <div id="content">
+        <button id="plain">Load Text (Plain AJAX)</button>
+        <button id="jq">Load Text (jQuery AJAX)</button>
+        <button id="json">Load JSON (getJSON)</button>
+        <button id="parse">Parse JSON</button>
+
+        <div id="output"></div>
+    </div>
+
+    <script>
+        const out = $('#output');
+
+        function show(type, text) {
+            out.removeClass().addClass(type).text(text).show();
+        }
+
+        $('#plain').click(() => {
+            const xhr = new XMLHttpRequest();
+            xhr.open('GET', 'textfile.txt', true);
+            xhr.onload = () => {
+                show('plain', xhr.status === 200 ? xhr.responseText : 'Error loading file.');
+            };
+            xhr.send();
+        });
+
+        $('#jq').click(() => {
+            $.get('textfile.txt')
+                .done(data => show('jquery', data))
+                .fail(() => show('jquery', 'Error loading file.'));
+        });
+
+        $('#json').click(() => {
+            $.getJSON('data.json')
+                .done(data => show('json', JSON.stringify(data, null, 2)))
+                .fail(() => show('json', 'Error loading JSON.'));
+        });
+
+        $('#parse').click(() => {
+            $.get('data.json')
+                .done(data => {
+                    try {
+                        let json = typeof data === 'string' ? JSON.parse(data) : data;
+                        show('parse', JSON.stringify(json, null, 2));
+                    } catch (e) {
+                        show('parse', 'Error parsing: ' + e.message);
+                    }
+                })
+                .fail(() => show('parse', 'Error loading JSON.'));
+        });
+    </script>
+
+</body>
+
+</html>

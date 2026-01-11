@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>jQuery Simple Example</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f7f6;
+            height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            text-align: center;
+            background: #fff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .box {
+            width: 100px;
+            height: 100px;
+            background: blue;
+            color: #fff;
+            margin: 20px auto;
+            line-height: 100px;
+            border-radius: 50px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 8px;
+            border: none;
+            border-radius: 5px;
+            background: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #cb00c4;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <p id="paragraph">This is an existing paragraph.</p>
+
+        <ul id="list">
+            <li>List item 1</li>
+            <li>List item 2</li>
+        </ul>
+
+        <div class="box" id="box">Animate!</div>
+
+        <button id="appendButton">Append Content</button>
+        <button id="animateButton">Animate Box</button>
+    </div>
+
+    <script>
+        $(function () {
+
+            $("#appendButton").click(() => {
+                $("#paragraph").append(" Appended text.");
+                $("#list").append("<li>New appended list item</li>");
+            });
+
+            $("#animateButton").click(() => {
+                $("#box")
+                    .css({ width: "100px", height: "100px", opacity: 1, background: "blue" })
+                    .animate({ width: "200px", height: "200px", opacity: 0.5 }, 1000)
+                    .queue(function () {
+                        $(this).css("background", "green").dequeue();
+                    });
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>
